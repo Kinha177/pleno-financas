@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Pleno — Visão geral</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="icons.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
+  <aside class="sidebar">
+    <a class="brand" href="#" aria-label="Pleno, início"><span class="brand-mark"><i></i><i></i><i></i></span>pleno<span class="brand-dot">.</span></a>
+    <div class="workspace"><span class="workspace-icon" data-icon="wallet"></span><div>Minhas finanças<small>Espaço pessoal</small></div><span data-icon="chevronDown"></span></div>
+    <p class="nav-label">PRINCIPAL</p>
+    <nav aria-label="Menu principal">
+      <button class="nav-item active" aria-current="page" data-nav="dashboard"><span data-icon="grid"></span>Visão geral</button>
+      <button class="nav-item" data-preview="transactions"><span data-icon="arrows"></span>Transações</button>
+      <button class="nav-item" data-preview="reserves"><span data-icon="layers"></span>Reservas</button>
+      <button class="nav-item" data-preview="bills"><span data-icon="calendar"></span>Contas fixas</button>
+      <button class="nav-item" data-preview="cards"><span data-icon="card"></span>Cartões de crédito</button>
+      <button class="nav-item" data-preview="categories"><span data-icon="layers"></span>Categorias</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="quiet-note"><span data-icon="leaf"></span><strong>Mais clareza.<br>Mais tranquilidade.</strong><p>Um passo de cada vez para uma vida financeira leve.</p></div>
+      <div class="offline"><span class="status-dot"></span>100% local e offline</div>
+      <div class="profile"><span class="avatar">LC</span><div><strong>Lucas Costa</strong><small>Perfil pessoal</small></div><span data-icon="chevronDown"></span></div>
+    </div>
+  </aside>
+
+  <div class="shell">
+    <header class="topbar"><div class="breadcrumb">Meu espaço <span>/</span> <strong>Visão geral</strong></div><div class="topbar-right"><button class="demo-badge" id="database-info">Banco local</button><button class="icon-button" id="privacy-button" aria-label="Ocultar valores" aria-pressed="false" title="Ocultar valores"><span data-icon="eye"></span></button><span class="top-avatar">LC</span></div></header>
+    <main id="main" tabindex="-1">
+      <section class="page-heading"><div><div class="eyebrow">SEU DINHEIRO, COM CLAREZA</div><h1>Vamos cuidar do seu futuro.</h1><p>Veja como estão suas finanças e planeje os próximos passos.</p></div><div class="heading-actions"><div class="month-control"><button class="icon-button" id="previous-month" aria-label="Mês anterior"><span data-icon="chevronLeft"></span></button><span data-icon="calendar"></span><span id="month-label"></span><button class="icon-button" id="next-month" aria-label="Próximo mês"><span data-icon="chevronRight"></span></button></div><button class="button primary" id="new-transaction"><span data-icon="plus"></span>Nova transação</button></div></section>
+
+      <section class="summary-grid" aria-label="Resumo financeiro">
+        <article class="summary-card balance-card"><div class="summary-top"><span>Saldo atual</span><span class="summary-icon" data-icon="wallet"></span></div><strong class="summary-value money" id="balance"></strong><div class="summary-foot"><span class="light-pill"><span data-icon="check"></span>Em caixa</span><span>Seu saldo disponível em caixa</span></div><div class="balance-decoration" aria-hidden="true"></div></article>
+        <article class="summary-card"><div class="summary-top"><span>Receitas do mês</span><span class="summary-icon mint" data-icon="arrowDownLeft"></span></div><strong class="summary-value money" id="income"></strong><div class="summary-foot"><span class="trend" data-icon="arrowUpRight"></span><span>Recebimentos confirmados</span></div></article>
+        <article class="summary-card"><div class="summary-top"><span>Gastos do mês</span><span class="summary-icon peach" data-icon="arrowUpRight"></span></div><strong class="summary-value money" id="expenses"></strong><div class="summary-foot"><span class="small-dot orange"></span><span>Despesas e parcelas do período</span></div></article>
+        <article class="summary-card"><div class="summary-top"><span>Faturas em aberto</span><span class="summary-icon lavender" data-icon="card"></span></div><strong class="summary-value money" id="invoices-total"></strong><div class="summary-foot"><span class="invoice-count" id="invoice-count"></span><span>aguardando pagamento</span></div></article>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel reserves-panel" aria-labelledby="reserves-title"><div class="panel-heading"><div><h2 id="reserves-title">Cada plano, uma reserva</h2><p>Seu orçamento distribuído no que importa.</p></div><button class="text-button" data-preview="reserves">Ver reservas <span data-icon="arrowRight"></span></button></div><div class="reserve-grid" id="reserves"></div><div class="reserve-footer"><span data-icon="info"></span><span id="reserve-insight"></span></div></section>
+        <section class="panel due-panel" aria-labelledby="due-title"><div class="panel-heading"><div><h2 id="due-title">No seu radar</h2><p>Contas que vencem nos próximos 7 dias.</p></div><span class="count-badge" id="due-count"></span></div><div id="upcoming-bills"></div><div class="due-total"><span>Total previsto</span><strong class="money" id="due-total"></strong></div></section>
+        <section class="panel transactions-panel" aria-labelledby="transactions-title"><div class="panel-heading"><div><h2 id="transactions-title">Últimas movimentações</h2><p>Os pequenos movimentos da sua vida financeira.</p></div><button class="text-button" data-preview="transactions">Ver todas <span data-icon="arrowRight"></span></button></div><div class="transaction-toolbar"><div class="tabs" role="group" aria-label="Filtrar movimentações"><button class="tab active" data-filter="all" aria-pressed="true">Todas</button><button class="tab" data-filter="income" aria-pressed="false">Receitas</button><button class="tab" data-filter="expense" aria-pressed="false">Despesas</button></div><label class="search"><span data-icon="search"></span><input id="transaction-search" type="search" placeholder="Buscar movimentação" aria-label="Buscar movimentação"></label></div><div class="table-wrap"><table><thead><tr><th>Descrição</th><th>Categoria</th><th>Data</th><th class="amount-cell">Valor</th></tr></thead><tbody id="transactions"></tbody></table></div></section>
+        <section class="panel cards-panel" aria-labelledby="cards-title"><div class="panel-heading"><div><h2 id="cards-title">Seus cartões</h2><p>Limites sob controle, planos em dia.</p></div><button class="icon-button" data-preview="cards" aria-label="Ver cartões"><span data-icon="arrowUpRight"></span></button></div><div id="credit-card"></div></section>
+      </div>
+      <section id="module-view" hidden></section>
+      <footer class="page-footer"><span><span class="status-dot"></span>Uma visão mais leve das suas finanças.</span><span id="demo-date"></span></footer>
+    </main>
+  </div>
+
+  <dialog id="detail-dialog"><div class="dialog-heading"><div><span class="eyebrow">PRÉVIA DO PROJETO</span><h2 id="dialog-title"></h2></div><button class="icon-button" data-close aria-label="Fechar janela"><span data-icon="close"></span></button></div><div id="dialog-content"></div><div class="dialog-footer"><span>Dados fictícios · sem gravação no banco</span><button class="button secondary" data-close>Fechar</button></div></dialog>
+  <dialog id="transaction-dialog"><div class="dialog-heading"><div><span class="eyebrow">EXPERIMENTE O VISUAL</span><h2>Nova transação</h2></div><button class="icon-button" data-close aria-label="Fechar janela"><span data-icon="close"></span></button></div><p class="dialog-description">Este lançamento é demonstrativo e desaparece ao recarregar.</p><form id="transaction-form"><div class="form-row"><label>Tipo<select name="kind"><option value="expense">Despesa</option><option value="income">Receita</option></select></label><label>Valor (R$)<input name="amount" type="text" inputmode="decimal" placeholder="0,00" pattern="[0-9]+([,.][0-9]{1,2})?" maxlength="12" required></label></div><label>Descrição<input name="description" placeholder="Ex.: Café da tarde" maxlength="80" required></label><div class="form-row"><label>Categoria<select name="category"><option>Alimentação</option><option>Transporte</option><option>Moradia</option><option>Lazer</option><option>Saúde</option><option>Outros</option></select></label><label>Data<input name="date" type="date" min="2000-01-01" max="2099-12-31" required></label></div><p class="form-error" id="form-error" role="alert"></p><div class="dialog-footer"><button class="button secondary" type="button" data-close>Cancelar</button><button class="button primary" type="submit">Adicionar à demonstração</button></div></form></dialog>
+  <dialog id="editor-dialog"><div class="dialog-heading"><h2 id="editor-title"></h2><button class="icon-button" data-close aria-label="Fechar janela"><span data-icon="close"></span></button></div><form id="editor-form"></form></dialog>
+  <dialog id="confirm-dialog"><h2 id="confirm-title">Confirmar alteração</h2><p id="confirm-message" class="dialog-description"></p><p class="form-error" id="confirm-error" role="alert"></p><div class="dialog-footer"><button class="button secondary" data-close>Cancelar</button><button class="button primary" id="confirm-submit">Confirmar</button></div></dialog>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>

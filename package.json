@@ -1,0 +1,68 @@
+{
+  "name": "pleno-financas",
+  "version": "1.0.1",
+  "private": true,
+  "description": "Controle financeiro pessoal offline com SQLite",
+  "main": "src/main/main.cjs",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "start": "node scripts/start.cjs",
+    "preview": "node scripts/preview.cjs",
+    "check": "node scripts/check.cjs",
+    "test": "node --test tests/*.test.cjs",
+    "dist": "npm run check && npm test && electron-builder --win nsis portable --x64 --publish never",
+    "pack": "electron-builder --win --x64 --dir --publish never"
+  },
+  "devDependencies": {
+    "electron": "44.5.1",
+    "electron-builder": "26.15.3",
+    "jsdom": "26.1.0"
+  },
+  "author": "Lucas Costa",
+  "build": {
+    "appId": "br.com.pleno.financas",
+    "productName": "Pleno",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "src/**/*",
+      "schema.sql",
+      "build/icon.png",
+      "package.json",
+      "!src/renderer/demo-app.js",
+      "!src/renderer/demo-data.js"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "artifactName": "Pleno-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "Pleno-Portable-${version}.${ext}"
+    },
+    "npmRebuild": false
+  }
+}
